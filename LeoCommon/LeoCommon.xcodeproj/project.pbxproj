@@ -18,7 +18,8 @@
 		225509011E9CAFBD00B2282F /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225508F91E9CAFBD00B2282F /* Result.framework */; };
 		225509021E9CAFBD00B2282F /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225508FA1E9CAFBD00B2282F /* SnapKit.framework */; };
 		225509031E9CAFBD00B2282F /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225508FB1E9CAFBD00B2282F /* SwiftRichString.framework */; };
-		22F7EDB61E98C6B000276588 /* LeoCommon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F7EDB51E98C6B000276588 /* LeoCommon.swift */; };
+		225509141E9CBF1600B2282F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225509131E9CBF1600B2282F /* LocalStorage.swift */; };
+		225509161E9CCBC400B2282F /* LeoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225509151E9CCBC400B2282F /* LeoError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,7 +36,8 @@
 		225508F91E9CAFBD00B2282F /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		225508FA1E9CAFBD00B2282F /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		225508FB1E9CAFBD00B2282F /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = ../Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
-		22F7EDB51E98C6B000276588 /* LeoCommon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeoCommon.swift; sourceTree = "<group>"; };
+		225509131E9CBF1600B2282F /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		225509151E9CCBC400B2282F /* LeoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeoError.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 		222EB7E31E9779F9008C1A7C = {
 			isa = PBXGroup;
 			children = (
+				2255089E1E9C878700B2282F /* Supporting Files */,
 				222EB7EF1E9779F9008C1A7C /* LeoCommon */,
 				222EB7EE1E9779F9008C1A7C /* Products */,
 				2255089F1E9C87B200B2282F /* Frameworks */,
@@ -78,8 +81,8 @@
 		222EB7EF1E9779F9008C1A7C /* LeoCommon */ = {
 			isa = PBXGroup;
 			children = (
-				2255089E1E9C878700B2282F /* Supporting Files */,
-				22F7EDB51E98C6B000276588 /* LeoCommon.swift */,
+				225509151E9CCBC400B2282F /* LeoError.swift */,
+				225509131E9CBF1600B2282F /* LocalStorage.swift */,
 			);
 			path = LeoCommon;
 			sourceTree = "<group>";
@@ -92,6 +95,7 @@
 				222EB7F11E9779F9008C1A7C /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = LeoCommon;
 			sourceTree = "<group>";
 		};
 		2255089F1E9C87B200B2282F /* Frameworks */ = {
@@ -191,7 +195,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22F7EDB61E98C6B000276588 /* LeoCommon.swift in Sources */,
+				225509161E9CCBC400B2282F /* LeoError.swift in Sources */,
+				225509141E9CBF1600B2282F /* LocalStorage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
