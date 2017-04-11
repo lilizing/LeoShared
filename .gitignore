@@ -73,3 +73,5 @@ iOSInjectionProject/
 LeoShared/
 .DS_Store
 */**/.DS_Store
+
+Carthage/
