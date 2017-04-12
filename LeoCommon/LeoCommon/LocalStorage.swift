@@ -19,7 +19,7 @@ final public class LocalStorage {
 
     private init() { }
     
-    let queue = DispatchQueue(label: "com.leo.localstorage")
+    let queue = DispatchQueue(label: "com.leo.common.localstorage")
     
     public func save(_ value:Any, forKey:String, async:Bool, encode:@escaping LocalStorageEncode, callback: @escaping LocalStorageCallBack) -> Void {
         if async {

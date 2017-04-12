@@ -20,6 +20,7 @@
 		225509031E9CAFBD00B2282F /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225508FB1E9CAFBD00B2282F /* SwiftRichString.framework */; };
 		225509141E9CBF1600B2282F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225509131E9CBF1600B2282F /* LocalStorage.swift */; };
 		225509161E9CCBC400B2282F /* LeoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225509151E9CCBC400B2282F /* LeoError.swift */; };
+		2259F9EA1E9DFBB5004F088D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2259F9E91E9DFBB5004F088D /* Config.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,8 @@
 		225508FB1E9CAFBD00B2282F /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = ../Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
 		225509131E9CBF1600B2282F /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
 		225509151E9CCBC400B2282F /* LeoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeoError.swift; sourceTree = "<group>"; };
+		2259F9E91E9DFBB5004F088D /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		2259F9F01E9E0451004F088D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +86,7 @@
 			children = (
 				225509151E9CCBC400B2282F /* LeoError.swift */,
 				225509131E9CBF1600B2282F /* LocalStorage.swift */,
+				2259F9E91E9DFBB5004F088D /* Config.swift */,
 			);
 			path = LeoCommon;
 			sourceTree = "<group>";
@@ -101,6 +105,7 @@
 		2255089F1E9C87B200B2282F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2259F9F01E9E0451004F088D /* Foundation.framework */,
 				225508F41E9CAFBD00B2282F /* Alamofire.framework */,
 				225508F51E9CAFBD00B2282F /* AlamofireObjectMapper.framework */,
 				225508F61E9CAFBD00B2282F /* ObjectMapper.framework */,
@@ -195,6 +200,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2259F9EA1E9DFBB5004F088D /* Config.swift in Sources */,
 				225509161E9CCBC400B2282F /* LeoError.swift in Sources */,
 				225509141E9CBF1600B2282F /* LocalStorage.swift in Sources */,
 			);
