@@ -1,5 +1,5 @@
 //
-//  LocalStorage.swift
+//  Storage.swift
 //  LeoCommon
 //
 //  Created by 李理 on 2017/4/11.
@@ -9,19 +9,19 @@
 import Foundation
 import Result
 
-public typealias LocalStorageCallBack = (Result<Any, LeoError>) -> Void
-public typealias LocalStorageEncode = (Any) -> Result<Any, LeoError>
-public typealias LocalStorageDecode = (Any) -> Result<Any, LeoError>
+public typealias StorageCallBack = (Result<Any, LeoError>) -> Void
+public typealias StorageEncode = (Any) -> Result<Any, LeoError>
+public typealias StorageDecode = (Any) -> Result<Any, LeoError>
 
-final public class LocalStorage {
+final public class Storage {
 
-    public static let shared: LocalStorage = LocalStorage()
+    public static let shared: Storage = Storage()
 
     private init() { }
     
     let queue = DispatchQueue(label: "com.leo.common.localstorage")
     
-    public func save(_ value:Any, forKey:String, async:Bool, encode:@escaping LocalStorageEncode, callback: @escaping LocalStorageCallBack) -> Void {
+    public func save(_ value:Any, forKey:String, async:Bool, encode:@escaping StorageEncode, callback: @escaping StorageCallBack) -> Void {
         if async {
             queue.async {
                 let encodeValue = encode(value)
@@ -32,7 +32,7 @@ final public class LocalStorage {
                         callback(.success(value))
                     }
                 }, ifFailure: { error in
-                    callback(.failure(.localStorageSaveFailured(reason: .encodeFailed(error: error))))
+                    callback(.failure(.storageSaveFailured(reason: .encodeFailed(error: error))))
                 })
             }
         } else {
@@ -42,12 +42,12 @@ final public class LocalStorage {
                 UserDefaults.standard.synchronize()
                 callback(.success(value))
             }, ifFailure: { error in
-                callback(.failure(.localStorageSaveFailured(reason: .encodeFailed(error: error))))
+                callback(.failure(.storageSaveFailured(reason: .encodeFailed(error: error))))
             })
         }
     }
     
-    public func save(_ value:Any, forKey:String, async:Bool, callback: @escaping LocalStorageCallBack) -> Void {
+    public func save(_ value:Any, forKey:String, async:Bool, callback: @escaping StorageCallBack) -> Void {
         self.save(value, forKey: forKey, async: async, encode: { (value) -> Result<Any, LeoError> in
             return .success(value)
         }, callback: callback)
@@ -67,7 +67,7 @@ final public class LocalStorage {
         self.save(value, forKey: forKey, async: false)
     }
     
-    public func value(_ forKey:String, async:Bool, decode:@escaping LocalStorageDecode, callback: @escaping LocalStorageCallBack) -> Result<Any, LeoError> {
+    public func value(_ forKey:String, async:Bool, decode:@escaping StorageDecode, callback: @escaping StorageCallBack) -> Result<Any, LeoError> {
         if async {
             queue.async {
                 let data = UserDefaults.standard.value(forKey: forKey)
@@ -77,14 +77,14 @@ final public class LocalStorage {
                         decodeValue.analysis(ifSuccess: { value in
                             callback(.success(value))
                         }, ifFailure: { error in
-                            callback(.failure(.localStorageSaveFailured(reason: .decodeFailed(error: error))))
+                            callback(.failure(.storageSaveFailured(reason: .decodeFailed(error: error))))
                         })
                     }
                 } else {
-                    callback(.failure(.localStorageSaveFailured(reason:.notfound(key: forKey))))
+                    callback(.failure(.storageSaveFailured(reason:.notfound(key: forKey))))
                 }
             }
-            return Result<Any, LeoError>.failure(.localStorageSaveFailured(reason:.noReturnForAsync))
+            return Result<Any, LeoError>.failure(.storageSaveFailured(reason:.noReturnForAsync))
         } else {
             let data = UserDefaults.standard.value(forKey: forKey)
             if data != nil {
@@ -92,18 +92,18 @@ final public class LocalStorage {
                 decodeValue.analysis(ifSuccess: { value in
                     callback(.success(value))
                 }, ifFailure: { error in
-                    callback(.failure(.localStorageSaveFailured(reason: .decodeFailed(error: error))))
+                    callback(.failure(.storageSaveFailured(reason: .decodeFailed(error: error))))
                 })
                 return decodeValue
             } else {
-                let result = Result<Any, LeoError>.failure(.localStorageSaveFailured(reason:.notfound(key: forKey)))
+                let result = Result<Any, LeoError>.failure(.storageSaveFailured(reason:.notfound(key: forKey)))
                 callback(result)
                 return result
             }
         }
     }
     
-    public func value(_ forKey:String, async:Bool, callback: @escaping LocalStorageCallBack) -> Result<Any, LeoError> {
+    public func value(_ forKey:String, async:Bool, callback: @escaping StorageCallBack) -> Result<Any, LeoError> {
         return self.value(forKey, async: async, decode: { (data) -> Result<Any, LeoError> in
             return .success(data)
         }, callback: callback)

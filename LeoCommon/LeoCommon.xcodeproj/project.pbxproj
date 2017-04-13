@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		222EA04F1E9F172800189C4A /* LeoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222EA04E1E9F172800189C4A /* LeoResult.swift */; };
 		2255089D1E9C86ED00B2282F /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 2255089C1E9C86ED00B2282F /* Cartfile */; };
 		225508BE1E9CA27000B2282F /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 225508BD1E9CA27000B2282F /* Cartfile.resolved */; };
 		225508F31E9CAF2000B2282F /* HEXColor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225508F21E9CAF2000B2282F /* HEXColor.framework */; };
@@ -18,12 +19,15 @@
 		225509011E9CAFBD00B2282F /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225508F91E9CAFBD00B2282F /* Result.framework */; };
 		225509021E9CAFBD00B2282F /* SnapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225508FA1E9CAFBD00B2282F /* SnapKit.framework */; };
 		225509031E9CAFBD00B2282F /* SwiftRichString.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225508FB1E9CAFBD00B2282F /* SwiftRichString.framework */; };
-		225509141E9CBF1600B2282F /* LocalStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225509131E9CBF1600B2282F /* LocalStorage.swift */; };
+		225509141E9CBF1600B2282F /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225509131E9CBF1600B2282F /* Storage.swift */; };
 		225509161E9CCBC400B2282F /* LeoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225509151E9CCBC400B2282F /* LeoError.swift */; };
 		2259F9EA1E9DFBB5004F088D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2259F9E91E9DFBB5004F088D /* Config.swift */; };
+		2288BE341E9E2F83004B14C7 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2288BE331E9E2F83004B14C7 /* API.swift */; };
+		2288BE361E9E31C8004B14C7 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2288BE351E9E31C8004B14C7 /* APIService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		222EA04E1E9F172800189C4A /* LeoResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeoResult.swift; sourceTree = "<group>"; };
 		222EB7ED1E9779F9008C1A7C /* LeoCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LeoCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		222EB7F11E9779F9008C1A7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2255089C1E9C86ED00B2282F /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cartfile; path = ../../Cartfile; sourceTree = "<group>"; };
@@ -37,10 +41,12 @@
 		225508F91E9CAFBD00B2282F /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = ../Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
 		225508FA1E9CAFBD00B2282F /* SnapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SnapKit.framework; path = ../Carthage/Build/iOS/SnapKit.framework; sourceTree = "<group>"; };
 		225508FB1E9CAFBD00B2282F /* SwiftRichString.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftRichString.framework; path = ../Carthage/Build/iOS/SwiftRichString.framework; sourceTree = "<group>"; };
-		225509131E9CBF1600B2282F /* LocalStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalStorage.swift; sourceTree = "<group>"; };
+		225509131E9CBF1600B2282F /* Storage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		225509151E9CCBC400B2282F /* LeoError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeoError.swift; sourceTree = "<group>"; };
 		2259F9E91E9DFBB5004F088D /* Config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		2259F9F01E9E0451004F088D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		2288BE331E9E2F83004B14C7 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
+		2288BE351E9E31C8004B14C7 /* APIService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +69,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		222EA0501E9F181700189C4A /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				225509151E9CCBC400B2282F /* LeoError.swift */,
+				222EA04E1E9F172800189C4A /* LeoResult.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
 		222EB7E31E9779F9008C1A7C = {
 			isa = PBXGroup;
 			children = (
@@ -84,8 +99,9 @@
 		222EB7EF1E9779F9008C1A7C /* LeoCommon */ = {
 			isa = PBXGroup;
 			children = (
-				225509151E9CCBC400B2282F /* LeoError.swift */,
-				225509131E9CBF1600B2282F /* LocalStorage.swift */,
+				222EA0501E9F181700189C4A /* Common */,
+				2288BE301E9E2BA0004B14C7 /* API */,
+				225509131E9CBF1600B2282F /* Storage.swift */,
 				2259F9E91E9DFBB5004F088D /* Config.swift */,
 			);
 			path = LeoCommon;
@@ -117,6 +133,15 @@
 				225508F21E9CAF2000B2282F /* HEXColor.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		2288BE301E9E2BA0004B14C7 /* API */ = {
+			isa = PBXGroup;
+			children = (
+				2288BE331E9E2F83004B14C7 /* API.swift */,
+				2288BE351E9E31C8004B14C7 /* APIService.swift */,
+			);
+			name = API;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,8 +226,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2259F9EA1E9DFBB5004F088D /* Config.swift in Sources */,
+				222EA04F1E9F172800189C4A /* LeoResult.swift in Sources */,
 				225509161E9CCBC400B2282F /* LeoError.swift in Sources */,
-				225509141E9CBF1600B2282F /* LocalStorage.swift in Sources */,
+				2288BE361E9E31C8004B14C7 /* APIService.swift in Sources */,
+				2288BE341E9E2F83004B14C7 /* API.swift in Sources */,
+				225509141E9CBF1600B2282F /* Storage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

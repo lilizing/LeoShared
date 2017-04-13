@@ -42,7 +42,7 @@ final public class Config {
     private var disk: Dictionary<String, Any>
     
     private init() {
-        let result = LocalStorage.shared.value(ConfigDiskKey)
+        let result = Storage.shared.value(ConfigDiskKey)
         let value = (try?result.dematerialize()) ?? [:]
         self.disk = value as! Dictionary<String, Any>
     }
@@ -59,7 +59,7 @@ final public class Config {
         if let saveToDisk = saveToDisk, saveToDisk {
             self.memory.removeValue(forKey: forKey)
             self.disk[forKey] = value
-            LocalStorage.shared.save(self.disk, forKey: ConfigDiskKey)
+            Storage.shared.save(self.disk, forKey: ConfigDiskKey)
         } else {
             self.memory[forKey] = value
         }

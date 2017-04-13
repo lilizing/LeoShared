@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import Result
+import Alamofire
 
 public enum LeoError:Error {
     
-    public enum LocalStorageSaveFailureReason {
+    public enum StorageSaveFailureReason {
         case unknown(desc: String)
         case notfound(key: String)
         case noReturnForAsync
@@ -19,35 +19,39 @@ public enum LeoError:Error {
         case decodeFailed(error: Error)
     }
     
-    public enum LocalStorageEncodeFailureReason {
+    public enum StorageEncodeFailureReason {
         case unknown(value: Any)
     }
     
-    public enum LocalStorageDecodeFailureReason {
+    public enum StorageDecodeFailureReason {
         case unknown(value: Any)
     }
     
-    case localStorageSaveFailured(reason: LocalStorageSaveFailureReason)
-    case localStorageEncodeFailured(reason: LocalStorageEncodeFailureReason)
-    case localStorageDecodeFailured(reason: LocalStorageDecodeFailureReason)
-    
-    
+    case storageSaveFailured(reason: StorageSaveFailureReason)
+    case storageEncodeFailured(reason: StorageEncodeFailureReason)
+    case storageDecodeFailured(reason: StorageDecodeFailureReason)
+    case afFailured(error: Error)
+    case unknown(desc: String)
 }
 
 extension LeoError: LocalizedError {
     public var errorDescription: String? {
         switch self {
-        case .localStorageSaveFailured(let reason):
+        case .storageSaveFailured(let reason):
             return reason.localizedDescription
-        case .localStorageEncodeFailured(let reason):
+        case .storageEncodeFailured(let reason):
             return reason.localizedDescription
-        case .localStorageDecodeFailured(let reason):
+        case .storageDecodeFailured(let reason):
             return reason.localizedDescription
+        case .afFailured:
+            return "api request failured because of af error"
+        case .unknown(let desc):
+            return "unknow error: \(desc)"
         }
     }
 }
 
-extension LeoError.LocalStorageSaveFailureReason {
+extension LeoError.StorageSaveFailureReason {
     var localizedDescription: String {
         switch self {
         case .unknown(let desc):
@@ -64,7 +68,7 @@ extension LeoError.LocalStorageSaveFailureReason {
     }
 }
 
-extension LeoError.LocalStorageEncodeFailureReason {
+extension LeoError.StorageEncodeFailureReason {
     var localizedDescription: String {
         switch self {
         case .unknown(let value):
@@ -73,7 +77,7 @@ extension LeoError.LocalStorageEncodeFailureReason {
     }
 }
 
-extension LeoError.LocalStorageDecodeFailureReason {
+extension LeoError.StorageDecodeFailureReason {
     var localizedDescription: String {
         switch self {
         case .unknown(let value):
