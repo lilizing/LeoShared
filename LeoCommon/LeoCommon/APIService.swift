@@ -12,6 +12,6 @@ import Alamofire
 open class APIService:APIDelegate {
     public init() {}
     public func defaultHTTPHeaders() -> HTTPHeaders? {
-        return ["Content-Type": "application/json"]
+        return nil
     }
 }

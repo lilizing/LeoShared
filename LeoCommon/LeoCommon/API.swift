@@ -37,7 +37,7 @@ open class API:Alamofire.SessionManager {
                 self.manager = API_MANAGER_DICT[self.basePath]!
             } else {
                 let configuration = URLSessionConfiguration.default
-                configuration.timeoutIntervalForRequest = 5
+                configuration.timeoutIntervalForRequest = 30
                 configuration.httpAdditionalHeaders = self.buildHeaders()
                 API_MANAGER_DICT[basePath] = self.manager
                 self.manager = Alamofire.SessionManager(configuration: configuration)
@@ -46,11 +46,17 @@ open class API:Alamofire.SessionManager {
         return self.manager!
     }
     
-    private func buildHeaders() -> HTTPHeaders {
+    private func buildHeaders(_ headers:HTTPHeaders? = nil) -> HTTPHeaders {
         var httpHeaders = SessionManager.defaultHTTPHeaders
         guard self.apiDelegate != nil else { return httpHeaders }
         guard self.apiDelegate!.defaultHTTPHeaders() != nil else { return httpHeaders }
         for (key, value) in self.apiDelegate!.defaultHTTPHeaders()! {
+            httpHeaders[key] = value
+        }
+        guard headers != nil else {
+            return httpHeaders
+        }
+        for (key, value) in headers! {
             httpHeaders[key] = value
         }
         return httpHeaders
@@ -60,19 +66,31 @@ open class API:Alamofire.SessionManager {
                         method: HTTPMethod = .get,
                         parameters: Parameters? = nil,
                         headers: HTTPHeaders? = nil,
+                        timeoutInterval: TimeInterval? = 30,
                         callback: @escaping ((LeoResult<T>) -> Void)) -> String {
-        let absURL:URLConvertible = self.basePath + url
-        self.createManager().request(absURL,
-                     method: method,
-                     parameters: parameters,
-                     headers: headers).responseObject { (response:DataResponse<T>) in
-            debugPrint(response.request?.allHTTPHeaderFields ?? [:])
-            if let error = response.error {
-                callback(.failure(.afFailured(error: error)))
-            } else {
-                callback(.success(response.value!))
+        let absURL = self.basePath + url
+        
+        var request:URLRequest = URLRequest(url: URL(string: absURL)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeoutInterval!)
+        request.httpMethod = method.rawValue
+        request.allHTTPHeaderFields = self.buildHeaders(headers)
+        debugPrint(request.allHTTPHeaderFields!)
+        do {
+            let encodedURLRequest = try URLEncoding.default.encode(request, with: parameters)
+            self.createManager().request(encodedURLRequest).responseObject { (response:DataResponse<T>) in
+                debugPrint(response.request?.allHTTPHeaderFields ?? [:])
+                if let error = response.error {
+                    callback(.failure(.afFailured(error: error)))
+                } else {
+                    callback(.success(response.value!))
+                }
             }
+        } catch {
+            callback(.failure(.parameterEncodeFailured(error: error)))
         }
         return UUID().uuidString
+    }
+    
+    deinit {
+        debugPrint("API deinit")
     }
 }
