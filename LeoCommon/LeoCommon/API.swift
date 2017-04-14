@@ -11,7 +11,7 @@ import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
 
-var API_MANAGER_DICT:Dictionary<String, Alamofire.SessionManager> = [:]
+var API_MANAGERS:Dictionary<String, Alamofire.SessionManager> = [:]
 public typealias HTTPMethod = Alamofire.HTTPMethod
 public typealias Parameters = Alamofire.Parameters
 public typealias HTTPHeaders = Alamofire.HTTPHeaders
@@ -35,14 +35,14 @@ open class API:Alamofire.SessionManager {
     
     private func createManager() -> Alamofire.SessionManager {
         if self.manager == nil {
-            if API_MANAGER_DICT[self.basePath] != nil {
-                self.manager = API_MANAGER_DICT[self.basePath]!
+            if API_MANAGERS[self.basePath] != nil {
+                self.manager = API_MANAGERS[self.basePath]!
             } else {
                 let configuration = URLSessionConfiguration.default
                 configuration.timeoutIntervalForRequest = 30
                 configuration.httpAdditionalHeaders = self.buildHeaders()
-                API_MANAGER_DICT[basePath] = self.manager
                 self.manager = Alamofire.SessionManager(configuration: configuration)
+                API_MANAGERS[basePath] = self.manager
             }
         }
         return self.manager!
