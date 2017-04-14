@@ -13,6 +13,8 @@ import AlamofireObjectMapper
 
 var API_MANAGER_DICT:Dictionary<String, Alamofire.SessionManager> = [:]
 public typealias HTTPMethod = Alamofire.HTTPMethod
+public typealias Parameters = Alamofire.Parameters
+public typealias HTTPHeaders = Alamofire.HTTPHeaders
 
 public protocol APIDelegate {
     func defaultHTTPHeaders() -> HTTPHeaders?
@@ -62,35 +64,41 @@ open class API:Alamofire.SessionManager {
         return httpHeaders
     }
     
-    public func execute<T:BaseMappable>(_ url: String,
-                        method: HTTPMethod = .get,
-                        parameters: Parameters? = nil,
-                        headers: HTTPHeaders? = nil,
-                        timeoutInterval: TimeInterval? = 30,
-                        callback: @escaping ((LeoResult<T>) -> Void)) -> String {
+    public func fetch<T:BaseMappable>(_ url: String,
+                      method: HTTPMethod = .get,
+                      parameters: Parameters? = nil,
+                      headers: HTTPHeaders? = nil,
+                      timeoutInterval: TimeInterval? = 30,
+                      resultMap: @escaping ([String : Any]) -> (TResult<T>),
+                      errorHandler: @escaping (TResult<T>) -> Void = { _ in },
+                      callback: @escaping (TResult<T>) -> Void = { _ in }) -> String {
         let absURL = self.basePath + url
-        
         var request:URLRequest = URLRequest(url: URL(string: absURL)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeoutInterval!)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = self.buildHeaders(headers)
-        debugPrint(request.allHTTPHeaderFields!)
         do {
             let encodedURLRequest = try URLEncoding.default.encode(request, with: parameters)
-            self.createManager().request(encodedURLRequest).responseObject { (response:DataResponse<T>) in
-                debugPrint(response.request?.allHTTPHeaderFields ?? [:])
+            self.createManager().request(encodedURLRequest).responseJSON(completionHandler: { response in
+                var result:TResult<T>? = nil
                 if let error = response.error {
-                    callback(.failure(.afFailured(error: error)))
+                    result = .failure(TAnyError(error))
                 } else {
-                    callback(.success(response.value!))
+                    result = resultMap(response.value! as! [String : Any])
                 }
-            }
+                errorHandler(result!)
+                callback(result!)
+            })
         } catch {
-            callback(.failure(.parameterEncodeFailured(error: error)))
+            callback(.failure(TAnyError(error)))
         }
         return UUID().uuidString
     }
     
     deinit {
         debugPrint("API deinit")
+    }
+    
+    private func errorCommonHandler(error: NSError) {
+        
     }
 }

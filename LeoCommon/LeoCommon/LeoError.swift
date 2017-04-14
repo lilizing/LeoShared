@@ -30,8 +30,6 @@ public enum LeoError:Error {
     case storageSaveFailured(reason: StorageSaveFailureReason)
     case storageEncodeFailured(reason: StorageEncodeFailureReason)
     case storageDecodeFailured(reason: StorageDecodeFailureReason)
-    case afFailured(error: Error)
-    case parameterEncodeFailured(error: Error)
     case unknown(desc: String)
 }
 
@@ -44,10 +42,6 @@ extension LeoError: LocalizedError {
             return reason.localizedDescription
         case .storageDecodeFailured(let reason):
             return reason.localizedDescription
-        case .afFailured:
-            return "api request failured because of af error"
-        case .parameterEncodeFailured:
-            return "api request failured because of request parameters encode error"
         case .unknown(let desc):
             return "unknow error: \(desc)"
         }

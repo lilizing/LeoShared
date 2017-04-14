@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		222EA04F1E9F172800189C4A /* LeoResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222EA04E1E9F172800189C4A /* LeoResult.swift */; };
+		222EA04F1E9F172800189C4A /* TResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222EA04E1E9F172800189C4A /* TResult.swift */; };
 		2255089D1E9C86ED00B2282F /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 2255089C1E9C86ED00B2282F /* Cartfile */; };
 		225508BE1E9CA27000B2282F /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 225508BD1E9CA27000B2282F /* Cartfile.resolved */; };
 		225508F31E9CAF2000B2282F /* HEXColor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 225508F21E9CAF2000B2282F /* HEXColor.framework */; };
@@ -27,7 +27,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		222EA04E1E9F172800189C4A /* LeoResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeoResult.swift; sourceTree = "<group>"; };
+		222EA04E1E9F172800189C4A /* TResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TResult.swift; sourceTree = "<group>"; };
 		222EB7ED1E9779F9008C1A7C /* LeoCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LeoCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		222EB7F11E9779F9008C1A7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2255089C1E9C86ED00B2282F /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cartfile; path = ../../Cartfile; sourceTree = "<group>"; };
@@ -73,7 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				225509151E9CCBC400B2282F /* LeoError.swift */,
-				222EA04E1E9F172800189C4A /* LeoResult.swift */,
+				222EA04E1E9F172800189C4A /* TResult.swift */,
 			);
 			name = Common;
 			sourceTree = "<group>";
@@ -226,7 +226,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2259F9EA1E9DFBB5004F088D /* Config.swift in Sources */,
-				222EA04F1E9F172800189C4A /* LeoResult.swift in Sources */,
+				222EA04F1E9F172800189C4A /* TResult.swift in Sources */,
 				225509161E9CCBC400B2282F /* LeoError.swift in Sources */,
 				2288BE361E9E31C8004B14C7 /* APIService.swift in Sources */,
 				2288BE341E9E2F83004B14C7 /* API.swift in Sources */,
