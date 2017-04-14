@@ -12,6 +12,8 @@ import ObjectMapper
 import AlamofireObjectMapper
 
 var API_MANAGERS:Dictionary<String, Alamofire.SessionManager> = [:]
+var API_REQUESTS:Dictionary<String, Alamofire.DataRequest> = [:]
+
 public typealias HTTPMethod = Alamofire.HTTPMethod
 public typealias Parameters = Alamofire.Parameters
 public typealias HTTPHeaders = Alamofire.HTTPHeaders
@@ -27,6 +29,8 @@ open class API:Alamofire.SessionManager {
     private var manager:Alamofire.SessionManager?
     
     public var apiDelegate:APIDelegate?
+    
+    private let queue = DispatchQueue(label: "com.leo.api.queue")
     
     public init(basePath:String) {
         self.basePath = basePath
@@ -76,9 +80,10 @@ open class API:Alamofire.SessionManager {
         var request:URLRequest = URLRequest(url: URL(string: absURL)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeoutInterval!)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = self.buildHeaders(headers)
+        let requestID = UUID().uuidString
         do {
             let encodedURLRequest = try URLEncoding.default.encode(request, with: parameters)
-            self.createManager().request(encodedURLRequest).responseJSON(completionHandler: { response in
+            let task = self.createManager().request(encodedURLRequest).responseJSON(completionHandler: { response in
                 var result:TResult<T>? = nil
                 if let error = response.error {
                     result = .failure(TAnyError(error))
@@ -88,17 +93,25 @@ open class API:Alamofire.SessionManager {
                 errorHandler(result!)
                 callback(result!)
             })
+            self.queue.sync {
+                API_REQUESTS[requestID] = task
+            }
         } catch {
             callback(.failure(TAnyError(error)))
         }
-        return UUID().uuidString
+        return requestID
     }
     
     deinit {
         debugPrint("API deinit")
     }
     
-    private func errorCommonHandler(error: NSError) {
-        
+    public func cancel(requestID:String) {
+        if let request = API_REQUESTS[requestID] {
+            request.cancel()
+            _ = self.queue.sync {
+                API_REQUESTS.removeValue(forKey: requestID)
+            }
+        }
     }
 }
