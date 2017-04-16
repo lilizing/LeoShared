@@ -10,7 +10,19 @@ import Foundation
 import Alamofire
 
 open class APIService:APIDelegate {
-    public init() {}
+    private var apis: [String: API] = [:]
+    
+    public init() {
+    }
+    
+    public func api(_ basePath: String) -> API {
+        guard self.apis[basePath] == nil else { return self.apis[basePath]! }
+        let api = API(basePath: basePath)
+        api.apiDelegate = self
+        self.apis[basePath] = api
+        return api
+    }
+    
     public func defaultHTTPHeaders() -> HTTPHeaders? {
         return nil
     }
