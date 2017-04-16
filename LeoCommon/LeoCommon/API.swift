@@ -18,7 +18,7 @@ public typealias HTTPMethod = Alamofire.HTTPMethod
 public typealias Parameters = Alamofire.Parameters
 public typealias HTTPHeaders = Alamofire.HTTPHeaders
 
-public protocol APIDelegate {
+public protocol APIDelegate:class {
     func defaultHTTPHeaders() -> HTTPHeaders?
 }
 
@@ -28,7 +28,7 @@ open class API:Alamofire.SessionManager {
     
     private var manager:Alamofire.SessionManager?
     
-    public var apiDelegate:APIDelegate?
+    public weak var apiDelegate:APIDelegate?
     
     private let queue = DispatchQueue(label: "com.leo.api.queue")
     
