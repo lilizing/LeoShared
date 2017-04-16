@@ -30,6 +30,7 @@
 		222EA04E1E9F172800189C4A /* TResult.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TResult.swift; sourceTree = "<group>"; };
 		222EB7ED1E9779F9008C1A7C /* LeoCommon.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = LeoCommon.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		222EB7F11E9779F9008C1A7C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		223003741EA35FA10012D9EB /* Starscream.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Starscream.framework; path = ../Carthage/Build/iOS/Starscream.framework; sourceTree = "<group>"; };
 		2255089C1E9C86ED00B2282F /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cartfile; path = ../../Cartfile; sourceTree = "<group>"; };
 		225508BD1E9CA27000B2282F /* Cartfile.resolved */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile.resolved; sourceTree = "<group>"; };
 		225508F21E9CAF2000B2282F /* HEXColor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HEXColor.framework; path = ../Carthage/Build/iOS/HEXColor.framework; sourceTree = "<group>"; };
@@ -121,6 +122,7 @@
 		2255089F1E9C87B200B2282F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				223003741EA35FA10012D9EB /* Starscream.framework */,
 				2259F9F01E9E0451004F088D /* Foundation.framework */,
 				225508F41E9CAFBD00B2282F /* Alamofire.framework */,
 				225508F51E9CAFBD00B2282F /* AlamofireObjectMapper.framework */,

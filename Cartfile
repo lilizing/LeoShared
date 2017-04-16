@@ -5,3 +5,4 @@ github "ReactiveCocoa/ReactiveCocoa" ~> 5.0
 github "tristanhimmelman/AlamofireObjectMapper" ~> 4.0
 github "mxcl/PromiseKit" ~> 4.0
 github "ReactiveX/RxSwift" ~> 3.0
+github "daltoniam/Starscream" >= 2.0.3
