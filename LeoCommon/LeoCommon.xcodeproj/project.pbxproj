@@ -22,6 +22,7 @@
 		225509141E9CBF1600B2282F /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225509131E9CBF1600B2282F /* Storage.swift */; };
 		225509161E9CCBC400B2282F /* LeoError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 225509151E9CCBC400B2282F /* LeoError.swift */; };
 		2259F9EA1E9DFBB5004F088D /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2259F9E91E9DFBB5004F088D /* Config.swift */; };
+		225E97F11EA37F0900B40975 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223003741EA35FA10012D9EB /* Starscream.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2288BE341E9E2F83004B14C7 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2288BE331E9E2F83004B14C7 /* API.swift */; };
 		2288BE361E9E31C8004B14C7 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2288BE351E9E31C8004B14C7 /* APIService.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				225E97F11EA37F0900B40975 /* Starscream.framework in Frameworks */,
 				225508FC1E9CAFBD00B2282F /* Alamofire.framework in Frameworks */,
 				225508FD1E9CAFBD00B2282F /* AlamofireObjectMapper.framework in Frameworks */,
 				225508FE1E9CAFBD00B2282F /* ObjectMapper.framework in Frameworks */,
