@@ -1,4 +1,5 @@
 github "ReactiveX/RxSwift" "3.4.0"
 github "daltoniam/Starscream" "2.0.4"
+github "malcommac/SwiftDate" "4.1.1"
 github "mxcl/PromiseKit" "4.1.8"
 github "yeahdongcn/UIColor-Hex-Swift" "3.0.2"
