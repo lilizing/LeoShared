@@ -114,7 +114,7 @@ open class API:Alamofire.SessionManager {
         return requestID
     }
     
-    public func action<T:BaseMappable>(_ obj:T, enabledIf: Property<Bool>,
+    public func action<T:BaseMappable>(_ type:T.Type, enabledIf: Property<Bool>,
                        url: String,
                        method: HTTPMethod = .get,
                        headers: HTTPHeaders? = nil,
