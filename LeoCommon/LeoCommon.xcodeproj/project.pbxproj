@@ -25,7 +25,7 @@
 		225E97F11EA37F0900B40975 /* Starscream.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 223003741EA35FA10012D9EB /* Starscream.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		2288BE341E9E2F83004B14C7 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2288BE331E9E2F83004B14C7 /* API.swift */; };
 		2288BE361E9E31C8004B14C7 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2288BE351E9E31C8004B14C7 /* APIService.swift */; };
-		22934AB71EA8A8CD006345ED /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22934AB61EA8A8CD006345ED /* SwiftDate.framework */; };
+		22934AB71EA8A8CD006345ED /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22934AB61EA8A8CD006345ED /* SwiftDate.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		22994A6A1EA73037007AA4B6 /* String.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22994A691EA73037007AA4B6 /* String.ext.swift */; };
 		32AFB0E5B4A1C8789EEEC16F /* Object.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AFB5CC0509376E06894765 /* Object.ext.swift */; };
 /* End PBXBuildFile section */

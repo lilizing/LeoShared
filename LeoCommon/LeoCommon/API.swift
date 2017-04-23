@@ -10,6 +10,7 @@ import Foundation
 import Alamofire
 import ObjectMapper
 import AlamofireObjectMapper
+import ReactiveSwift
 
 var API_MANAGERS:Dictionary<String, Alamofire.SessionManager> = [:]
 var API_REQUESTS:Dictionary<String, Alamofire.DataRequest> = [:]
@@ -17,6 +18,17 @@ var API_REQUESTS:Dictionary<String, Alamofire.DataRequest> = [:]
 public typealias HTTPMethod = Alamofire.HTTPMethod
 public typealias Parameters = Alamofire.Parameters
 public typealias HTTPHeaders = Alamofire.HTTPHeaders
+
+private func resultMap<T:BaseMappable>(json:[String: Any]) -> TResult<T> {
+    do {
+        let data = try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted)
+        let JSONString = String(data: data, encoding: .utf8)
+        let value:T = T(JSONString: JSONString!)!
+        return .success(value)
+    } catch {
+        return .failure(TAnyError(error))
+    }
+}
 
 public protocol APIDelegate:class {
     func defaultHTTPHeaders() -> HTTPHeaders?
@@ -100,6 +112,36 @@ open class API:Alamofire.SessionManager {
             callback(.failure(TAnyError(error)))
         }
         return requestID
+    }
+    
+    public func action<T:BaseMappable>(_ obj:T, enabledIf: Property<Bool>,
+                       url: String,
+                       method: HTTPMethod = .get,
+                       headers: HTTPHeaders? = nil,
+                       timeoutInterval: TimeInterval? = 30,
+                       resultMap: @escaping ([String : Any]) -> (TResult<T>) = resultMap,
+                       errorHandler: @escaping (TResult<T>) -> Void = { _ in }) -> Action<[String: Any], T, TAnyError> {
+        return Action(enabledIf: enabledIf, { params in
+            return SignalProducer<T, TAnyError> { observer, disposable in
+                let requestID = self.fetch(url,
+                                           method: method,
+                                           parameters: params,
+                                           headers: headers,
+                                           timeoutInterval: timeoutInterval,
+                                           resultMap: resultMap,
+                                           errorHandler: errorHandler) { (result:TResult<T>) in
+                                            result.analysis(ifSuccess: { value in
+                                                observer.send(value: value)
+                                                observer.sendCompleted()
+                                            }, ifFailure: { error in
+                                                observer.send(error: error)
+                                            })
+                }
+                disposable += ActionDisposable(action: {
+                    self.cancel(requestID: requestID)
+                })
+            }
+        })
     }
     
     deinit {
