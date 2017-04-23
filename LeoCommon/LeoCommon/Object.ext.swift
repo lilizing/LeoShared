@@ -4,3 +4,18 @@
 //
 
 import Foundation
+import ReactiveSwift
+
+open class BaseObject {
+    private let token = Lifetime.Token()
+    public var lifetime: Lifetime {
+        return Lifetime(token)
+    }
+    
+    public init() {
+        let type = String(describing: self).components(separatedBy: ".").last!
+        self.lifetime.observeEnded {
+            debugPrint("\(type) lifetime is ended")
+        }
+    }
+}
