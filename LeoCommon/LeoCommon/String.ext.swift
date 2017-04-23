@@ -12,18 +12,18 @@ import HEXColor
 import SwiftRichString
 
 extension String {
-    public func string(name:String, size:Int, hex:String) -> NSMutableAttributedString {
+    public func string(name:String? = FontName.HelveticaNeue.rawValue, size:Int? = 15, hex:String? = "#000000") -> NSMutableAttributedString {
         let style = Style.init { style in
-            style.font = FontAttribute.init(name, size: Float(size))
-            style.color = UIColor(hex)
+            style.font = FontAttribute.init(name!, size: Float(size!))
+            style.color = UIColor(hex!)
         }
         return self.set(style: style)
     }
     
-    public func string(name:String, size:Int, color:UIColor) -> NSMutableAttributedString {
+    public func string(name:String? = FontName.HelveticaNeue.rawValue, size:Int? = 15, color:UIColor? = .black) -> NSMutableAttributedString {
         let style = Style.init { style in
-            style.font = FontAttribute.init(name, size: Float(size))
-            style.color = color
+            style.font = FontAttribute.init(name!, size: Float(size!))
+            style.color = color!
         }
         return self.set(style: style)
     }
