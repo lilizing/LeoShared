@@ -6,6 +6,10 @@
 import Foundation
 import ReactiveSwift
 
+public func className<T>(_ type:T.Type) -> String {
+    return "\(type)".components(separatedBy: ".").last!
+}
+
 open class BaseObject {
     private let token = Lifetime.Token()
     public var lifetime: Lifetime {
