@@ -23,3 +23,12 @@ open class BaseObject {
         }
     }
 }
+
+extension Dictionary {
+    public func string() -> String? {
+        if let data = try? JSONSerialization.data(withJSONObject: self, options: .prettyPrinted) {
+            return String.init(data: data, encoding: .utf8)
+        }
+        return nil
+    }
+}
