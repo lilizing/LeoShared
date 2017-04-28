@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		220205571EAB47210007D7C1 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220205561EAB47200007D7C1 /* SwiftyJSON.framework */; };
 		222EA04F1E9F172800189C4A /* TResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 222EA04E1E9F172800189C4A /* TResult.swift */; };
 		2255089D1E9C86ED00B2282F /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 2255089C1E9C86ED00B2282F /* Cartfile */; };
 		225508BE1E9CA27000B2282F /* Cartfile.resolved in Resources */ = {isa = PBXBuildFile; fileRef = 225508BD1E9CA27000B2282F /* Cartfile.resolved */; };
@@ -64,7 +63,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				220205571EAB47210007D7C1 /* SwiftyJSON.framework in Frameworks */,
 				22934AB71EA8A8CD006345ED /* SwiftDate.framework in Frameworks */,
 				225E97F11EA37F0900B40975 /* Starscream.framework in Frameworks */,
 				225508FC1E9CAFBD00B2282F /* Alamofire.framework in Frameworks */,

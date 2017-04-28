@@ -66,11 +66,12 @@ open class API:Alamofire.SessionManager {
     
     private func buildHeaders(_ headers:HTTPHeaders? = nil) -> HTTPHeaders {
         var httpHeaders = SessionManager.defaultHTTPHeaders
-        guard self.apiDelegate != nil else { return httpHeaders }
-        guard self.apiDelegate!.defaultHTTPHeaders() != nil else { return httpHeaders }
-        for (key, value) in self.apiDelegate!.defaultHTTPHeaders()! {
-            httpHeaders[key] = value
+        if let defaultHeaders = self.apiDelegate!.defaultHTTPHeaders() {
+            for (key, value) in defaultHeaders {
+                httpHeaders[key] = value
+            }
         }
+        
         guard headers != nil else {
             return httpHeaders
         }
@@ -88,13 +89,27 @@ open class API:Alamofire.SessionManager {
                       resultMap: @escaping ([String : Any]) -> (TResult<T>),
                       errorHandler: @escaping (TResult<T>) -> Void = { _ in },
                       callback: @escaping (TResult<T>) -> Void = { _ in }) -> String {
-        let absURL = self.basePath + url
+        
+        var tUrl = url
+        var tParams = parameters
+        if let params = parameters {
+            for (key, value) in params {
+                let range = tUrl.range(of: "{\(key)}")
+                if range != nil {
+                    tUrl.replaceSubrange(range!, with: value as! String)
+                    tParams!.removeValue(forKey: key)
+                }
+            }
+        }
+        
+        let absURL = self.basePath + tUrl
+        
         var request:URLRequest = URLRequest(url: URL(string: absURL)!, cachePolicy: .useProtocolCachePolicy, timeoutInterval: timeoutInterval!)
         request.httpMethod = method.rawValue
         request.allHTTPHeaderFields = self.buildHeaders(headers)
         let requestID = UUID().uuidString
         do {
-            let encodedURLRequest = try URLEncoding.default.encode(request, with: parameters)
+            let encodedURLRequest = try URLEncoding.default.encode(request, with: tParams)
             let task = self.createManager().request(encodedURLRequest).responseJSON(completionHandler: { response in
                 var result:TResult<T>? = nil
                 if let error = response.error {
