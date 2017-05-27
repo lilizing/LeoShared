@@ -28,7 +28,7 @@
 		22934AB71EA8A8CD006345ED /* SwiftDate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22934AB61EA8A8CD006345ED /* SwiftDate.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		22994A6A1EA73037007AA4B6 /* String.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22994A691EA73037007AA4B6 /* String.ext.swift */; };
 		22B0545F1ED4789300145E2E /* SDWebImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22B0545E1ED4789300145E2E /* SDWebImage.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		22DDE4901ED9225700D99EDC /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220205561EAB47200007D7C1 /* SwiftyJSON.framework */; };
+		22DDE4901ED9225700D99EDC /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 220205561EAB47200007D7C1 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		32AFB0E5B4A1C8789EEEC16F /* Object.ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 32AFB5CC0509376E06894765 /* Object.ext.swift */; };
 /* End PBXBuildFile section */
 
